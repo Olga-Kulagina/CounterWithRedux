@@ -1,0 +1,14 @@
+.counter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 2px solid mediumblue;
+    border-radius: 20px;
+    background-color: azure;
+    width: 250px;
+    height: 150px;
+
+
+}

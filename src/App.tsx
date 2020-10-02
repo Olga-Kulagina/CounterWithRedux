@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
+import {CounterContainer} from './Counter/CounterContainer';
+import {CustomizationContainer} from './Counter/Customization/СustomizationContainer';
 
-function App() {
-  return (
-    <div className="App">
-      Counter
-    </div>
-  );
+const App = () => {
+
+    return (
+        <div className="App">
+            <CounterContainer />
+            <CustomizationContainer />
+        </div>
+    );
 }
 
 export default App;
