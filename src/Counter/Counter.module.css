@@ -1,14 +1,13 @@
-.counter {
+.counterBlock {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 5px;
 
     border: 2px solid mediumblue;
     border-radius: 20px;
     background-color: azure;
     width: 250px;
-    height: 150px;
-
-
+    height: 200px;
 }

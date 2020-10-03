@@ -1,26 +1,27 @@
 import React from 'react';
 import CustomizationDisplay from './CustomizationDisplay';
 import {Button} from '../Button/Button';
+import s from './Customization.module.css'
 
-type PropsType = {
-    count: number
-    maxValue: number
-    startValue: number
-    setCount: (count: number) => void
-    setMax: (max: number) => void
+type CustomizationPropsType = {
+    newMaxValue: number
+    newStartValue: number
     maxValueChange: (maxValue: number) => void
     startValueChange: (startValue: number) => void
     setCustomization: () => void
 }
 
-function Customization(props: PropsType) {
+function Customization(props: CustomizationPropsType) {
 
     return (
-        <div>
-            <CustomizationDisplay maxValue={props.maxValue} startValue={props.startValue}
+        <div className={s.customisationBlock}>
+            <CustomizationDisplay newMaxValue={props.newMaxValue} newStartValue={props.newStartValue}
                                   maxValueChange={props.maxValueChange}
                                   startValueChange={props.startValueChange}/>
-            <Button title={'set'} callBack={props.setCustomization} disabled={false}/>
+            <Button title={'set'} callBack={props.setCustomization} disabled={
+                props.newStartValue < 0 ? true : false ||
+                props.newMaxValue < 0 ? true : false ||
+                    props.newStartValue >= props.newMaxValue}/>
         </div>
     )
 }

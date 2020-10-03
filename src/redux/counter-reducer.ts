@@ -1,13 +1,17 @@
 export type one = {
     startValue: number
-    currentValue: number
     maxValue: number
+    currentValue: number
+    newStartValue: number
+    newMaxValue: number
 }
 
 const InitialState: one = {
     startValue: 0,
+    maxValue: 5,
     currentValue: 0,
-    maxValue: 5
+    newStartValue: 0,
+    newMaxValue: 5
 }
 
 export const counterReducer = (state: one = InitialState, action: any): one => {
@@ -20,7 +24,18 @@ export const counterReducer = (state: one = InitialState, action: any): one => {
             return stateCopy
         }
         case 'RESET_COUNT': {
-            return {...state, currentValue: 0}
+            let stateCopy = {...state}
+            return {...stateCopy, currentValue: stateCopy.startValue}
+        }
+        case 'MAX_VALUE_CHANGE': {
+            return {...state, newMaxValue: action.newMaxValue}
+        }
+        case 'START_VALUE_CHANGE': {
+            return {...state, newStartValue: action.newStartValue}
+        }
+        case 'SET_CUSTOMIZATION': {
+            let stateCopy = {...state}
+            return {...stateCopy, startValue: stateCopy.newStartValue, maxValue: stateCopy.newMaxValue, currentValue: stateCopy.newStartValue}
         }
         default:
             return state
@@ -32,4 +47,13 @@ export const incrementCount = () => {
 }
 export const resetCount = () => {
     return {type: 'RESET_COUNT'}
+}
+export const setNewMaxValue = (newMaxValue: number) => {
+    return {type: 'MAX_VALUE_CHANGE', newMaxValue}
+}
+export const setNewStartValue = (newStartValue: number) => {
+    return {type: 'START_VALUE_CHANGE', newStartValue}
+}
+export const setCustomization = () => {
+    return {type: 'SET_CUSTOMIZATION'}
 }

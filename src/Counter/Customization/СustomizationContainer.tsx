@@ -1,31 +1,32 @@
 import React from 'react';
 import Customization from './Сustomization';
+import {useDispatch, useSelector} from 'react-redux';
+import {AppRootStateType} from '../../redux/store';
+import {one, setCustomization, setNewMaxValue, setNewStartValue} from '../../redux/counter-reducer';
 
 
 export const CustomizationContainer = () => {
-    let maxValueChange = (maxValue: number) => {
-        alert('maxValueChange')
+
+    let dispatch = useDispatch()
+
+    let counter = useSelector<AppRootStateType, one>(state => state.counter)
+
+    let maxValueChange = (newMaxValue: number) => {
+        dispatch(setNewMaxValue(newMaxValue))
     }
 
-    let startValueChange = (startValue: number) => {
-        alert('startValueChange')
+    let startValueChange = (newStartValue: number) => {
+        dispatch(setNewStartValue(newStartValue))
     }
 
-    let setCustomization = () => {
-        alert('setCustomization')
+    let onButtonSetCustomizationClick = () => {
+        dispatch(setCustomization())
     }
 
-    let setCount = () => {
-        alert('setCount')
-    }
-
-    let setMax = () => {
-        alert('setMax')
-    }
     return (
-        <Customization count={0} maxValue={7} startValue={0} setCount={setCount} setMax={setMax}
+        <Customization newMaxValue={counter.newMaxValue} newStartValue={counter.newStartValue}
                        maxValueChange={maxValueChange}
-                       startValueChange={startValueChange} setCustomization={setCustomization} />
+                       startValueChange={startValueChange} setCustomization={onButtonSetCustomizationClick}/>
     )
 }
 

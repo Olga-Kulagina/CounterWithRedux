@@ -1,10 +1,11 @@
 import React, {ChangeEvent} from 'react';
+import s from './Customization.module.css'
 
 type CustomizationDisplayPropsType = {
-    maxValue: number
-    startValue: number
-    maxValueChange: (maxValue: number) => void
-    startValueChange: (startValue: number) => void
+    newMaxValue: number
+    newStartValue: number
+    maxValueChange: (newMaxValue: number) => void
+    startValueChange: (newStartValue: number) => void
 }
 
 function CustomizationDisplay(props: CustomizationDisplayPropsType) {
@@ -18,14 +19,21 @@ function CustomizationDisplay(props: CustomizationDisplayPropsType) {
     }
 
     return (
-        <div>
+        <div className={s.customisationDisplay}>
             <div>
-                <label>max value<input type='number' value={props.maxValue}
-                                       onChange={onMaxValueChange}/></label>
+                <label>max value<input
+                    className={`${props.newMaxValue < 0 || props.newMaxValue === props.newStartValue ||
+                    props.newMaxValue < props.newStartValue ? s.incorrect : ''}`}
+                    type='number' value={props.newMaxValue}
+                    onChange={onMaxValueChange}/>
+                </label>
             </div>
             <div>
-                <label>start value<input type='number' value={props.startValue}
-                                         onChange={onStartValueChange}/></label>
+                <label>start value<input
+                    className={`${props.newStartValue < 0 || props.newMaxValue === props.newStartValue ||
+                    props.newMaxValue < props.newStartValue ? s.incorrect : ''}`}
+                    type='number' value={props.newStartValue}
+                    onChange={onStartValueChange}/></label>
             </div>
         </div>
     )

@@ -2,22 +2,27 @@ import React from 'react'
 import s from './Display.module.css'
 
 type DisplayPropsType = {
-    count: number
+    currentValue: number
     maxValue: number
     startValue: number
+    newMaxValue: number
+    newStartValue: number
 }
 
 function Display(props: DisplayPropsType) {
 
-    if(props.startValue < 0 ||
-        props.maxValue < 0 ||
-        props.startValue >= props.maxValue) {
-        return <div className={`${s.display}`} style={{color: 'red'}}>Incorrect input!</div>
+    if(props.newStartValue < 0 ||
+        props.newMaxValue < 0 ||
+        props.newStartValue >= props.newMaxValue) {
+        return <div className={`${s.display}`} style={{color: 'red'}}>Incorrect value!</div>
+    }
+    if(props.newStartValue !== props.startValue || props.newMaxValue !== props.maxValue) {
+        return <div className={`${s.display}`} style={{color: 'mediumblue', textAlign: 'center'}}>Enter values and press 'set'</div>
     }
 
     return (
-        <div className={`${s.display} ${props.count === props.maxValue ? s.maxCount : ''}`}>
-            {props.count}
+        <div className={`${s.display} ${props.currentValue === props.maxValue ? s.maxCount : ''}`}>
+            {props.currentValue}
         </div>
     )
 }

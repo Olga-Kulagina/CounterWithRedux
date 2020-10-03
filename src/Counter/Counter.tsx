@@ -9,29 +9,24 @@ type CounterPropsType = {
     currentValue: number
     maxValue: number
     startValue: number
+    newMaxValue: number
+    newStartValue: number
+    incCount: () => void
+    reCount: () => void
 }
 
 export const Counter = (props: CounterPropsType) => {
 
-    let dispatch = useDispatch()
-
-    let incCount = () => {
-        dispatch(incrementCount())
-    }
-
-    let reCount = () => {
-        dispatch(resetCount())
-    }
-
     return (
-        <div className={s.counter}>
+        <div className={s.counterBlock}>
             <div className={s.display}>
-                <Display count={props.currentValue} maxValue={props.maxValue} startValue={props.startValue}/>
+                <Display currentValue={props.currentValue} maxValue={props.maxValue} startValue={props.startValue}
+                         newMaxValue={props.newMaxValue} newStartValue={props.newStartValue}/>
             </div>
             <div className={s.buttonsPanel}>
-                <Button title={'inc'} callBack={incCount}
+                <Button title={'inc'} callBack={props.incCount}
                         disabled={props.currentValue === props.maxValue ? true : false}/>
-                <Button title={'reset'} callBack={reCount} disabled={props.currentValue === 0 ? true : false}/>
+                <Button title={'reset'} callBack={props.reCount} disabled={props.currentValue === props.startValue ? true : false}/>
             </div>
         </div>
     )

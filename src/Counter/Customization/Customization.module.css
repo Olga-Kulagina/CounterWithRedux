@@ -1,0 +1,36 @@
+.customisationBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+
+    border: 2px solid mediumblue;
+    border-radius: 20px;
+    background-color: azure;
+    width: 250px;
+    height: 200px;
+}
+
+.customisationDisplay {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 120px;
+    font-weight: bold;
+    font-family: "Myriad Pro", sans-serif;
+    font-size: 18px;
+    text-align: center;
+    border: 2px solid mediumblue;
+    border-radius: 20px;
+    background-color: ghostwhite;
+    color: mediumblue;
+}
+
+
+
+.incorrect {
+    background-color: lightcoral;
+}
